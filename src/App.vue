@@ -1,6 +1,6 @@
 <script setup>
 import { RouterView } from 'vue-router'
-import '@/assets/global.scss'
+import '@/assets/global.css'
 import AppNavbar from '@/components/AppNavbar.vue'
 import AppFooter from '@/components/AppFooter.vue'
 </script>

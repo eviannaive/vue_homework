@@ -4,14 +4,30 @@ export default {
   content: [],
   theme: {
     colors: {
-      blue: '#79a6bd',
-      white: '#fff'
+      black: {
+        DEFAULT: '#404040'
+      },
+      blue: { light: '#78a5bc', DEFAULT: '#79a6bd' },
+      white: '#fff',
+      yellow: '#fbedca',
+      pink: '#fcbfc7'
     },
     extend: {
       padding: {
+        5: '5px',
         10: '10px',
         15: '15px',
         30: '30px'
+      },
+      margin: {
+        5: '5px',
+        10: '10px',
+        15: '15px',
+        30: '30px'
+      },
+      borderRadius: {
+        5: '5px',
+        10: '10px'
       }
     }
   },

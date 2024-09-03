@@ -1,39 +1,37 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 
-import axios from 'axios'
+// import axios from 'axios'
 import MainSlider from '@/components/MainSlider.vue'
 import ProductCard from '@/components/ProductCard.vue'
+import { apiGetProducts, apiGetBanner } from '@/lib/apiInstance'
 
-const apiBaseUrl = 'https://vue3-tutorial-api.vercel.app/api'
-const banners = ref([])
-const products = ref([])
+const banners = ref<Banner[]>([])
+const products = ref<ProducCard[]>([])
 const alerts = ref([])
 
+//types
+import type { ProducCard, Banner } from '@/types'
+
 // 加入購物車
-const addCart = (product) => {
+const addCart = (product: ProducCard) => {
   console.log(`您已將 ${product.title} 商品加入購物車`)
-  alerts.value.push({
-    message: `您已將 ${product.title} 商品加入購物車`
-  })
-  setTimeout(() => {
-    alerts.value.shift()
-  }, 3000)
-}
-
-const getBanner = async () => {
-  const response = await axios.get(`${apiBaseUrl}/banner`)
-  banners.value = response.data
-}
-
-const getProducts = async () => {
-  const response = await axios.get(`${apiBaseUrl}/products`)
-  products.value = response.data
+  alert(`您已將 ${product.title} 商品加入購物車`)
+  // alerts.value.push({
+  //   message: `您已將 ${product.title} 商品加入購物車`
+  // })
+  // setTimeout(() => {
+  //   alerts.value.shift()
+  // }, 3000)
 }
 
 onMounted(() => {
-  getBanner()
-  getProducts()
+  apiGetProducts().then((res) => {
+    products.value = res.data
+  })
+  apiGetBanner().then((res) => {
+    banners.value = res.data
+  })
 })
 </script>
 
@@ -48,13 +46,18 @@ onMounted(() => {
 
   <main>
     <section class="banner">
-      <MainSlider :images="banners" />
+      <MainSlider :data="banners" />
     </section>
-    <section class="product">
-      <h2>Products</h2>
-      <div class="container">
-        <div class="product-list">
-          <ProductCard v-for="item in products" :key="item.id" :data="item" :add-cart="addCart" />
+    <section class="py-30">
+      <h2 class="mb-30">Products</h2>
+      <div class="w-[min(85%,800px)] mx-auto">
+        <div class="grid grid-cols-3 gap-[20px]">
+          <ProductCard
+            v-for="item in products"
+            :key="item.id"
+            :data="item"
+            @click="addCart(item)"
+          />
         </div>
       </div>
     </section>
@@ -96,7 +99,7 @@ onMounted(() => {
 .banner {
   padding: 10px 0;
 }
-.product {
+/* .product {
   padding: 30px 0;
   h2 {
     color: #404040;
@@ -113,5 +116,5 @@ onMounted(() => {
     flex-wrap: wrap;
     gap: 20px;
   }
-}
+} */
 </style>

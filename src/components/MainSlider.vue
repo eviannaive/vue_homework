@@ -1,15 +1,28 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import type { Banner } from '@/types'
+import { Swiper, SwiperSlide } from 'swiper/vue'
+import { Navigation } from 'swiper/modules'
+import 'swiper/css'
+import 'swiper/css/navigation'
+
+const props = defineProps<{ data: Banner[] }>()
+const modules = [Navigation]
+</script>
 
 <template>
   <div class="slider-wrapper">
-    <div class="img-box">
-      <img
-        src="https://res.cloudinary.com/djvyud0lx/image/upload/v1724145009/banner01_fky9h7.jpg"
-        alt=""
-      />
-    </div>
-    <div class="slider-nav prev"></div>
-    <div class="slider-nav next"></div>
+    <swiper
+      :modules="modules"
+      :navigation="{ enabled: true, prevEl: '.slider-nav.prev', nextEl: '.slider-nav.next' }"
+    >
+      <swiper-slide v-for="banner in data" :key="banner.id">
+        <div class="img-box">
+          <img :src="banner.imgUrl" alt="" />
+        </div>
+      </swiper-slide>
+      <div class="slider-nav prev"></div>
+      <div class="slider-nav next"></div>
+    </swiper>
   </div>
 </template>
 
@@ -27,6 +40,7 @@
     height: 60px;
     background-color: rgba(#fff, 0.9);
     cursor: pointer;
+    z-index: 1;
     &.prev {
       left: 10px;
       border-radius: 16px 4px 4px 16px;
