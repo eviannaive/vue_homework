@@ -18,8 +18,10 @@ apiInstance.interceptors.response.use(
 export default apiInstance
 
 export const apiGetProducts = () => {
+  console.log('pr')
   return apiInstance.get('/products')
 }
 export const apiGetBanner = () => {
+  console.log('ba')
   return apiInstance.get('/banner')
 }

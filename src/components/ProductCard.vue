@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { ProducCard } from '@/types'
 
-const props = defineProps<{ data: ProducCard }>()
+const props = defineProps<{ data: ProducCard; addCart: (product: ProducCard) => void }>()
 </script>
 
 <template>
@@ -14,7 +14,14 @@ const props = defineProps<{ data: ProducCard }>()
       <h3 class="title">{{ data.title }}</h3>
       <p class="mt-10">{{ data.description }}</p>
       <div class="text-blue-light text-xl mt-10">{{ data.price }}</div>
-      <div class="add-cart bg-pink rounded-5 py-2 px-[6px] m-0 mt-10 ml-auto cursor-pointer">
+      <div
+        class="add-cart bg-pink rounded-5 py-2 px-[6px] m-0 mt-10 ml-auto cursor-pointer"
+        @click="
+          () => {
+            addCart(data)
+          }
+        "
+      >
         加入購物車
       </div>
     </div>

@@ -3,6 +3,22 @@ import { RouterView } from 'vue-router'
 import '@/assets/global.css'
 import AppNavbar from '@/components/AppNavbar.vue'
 import AppFooter from '@/components/AppFooter.vue'
+import { onBeforeMount } from 'vue'
+import { useMainStore } from '@/stores'
+import { storeToRefs } from 'pinia'
+import { apiGetProducts, apiGetBanner } from '@/lib/apiInstance'
+
+const mainStore = useMainStore()
+const { banners, products } = storeToRefs(mainStore)
+
+onBeforeMount(() => {
+  apiGetBanner().then((res) => {
+    banners.value = res.data
+  })
+  apiGetProducts().then((res) => {
+    products.value = res.data
+  })
+})
 </script>
 
 <template>

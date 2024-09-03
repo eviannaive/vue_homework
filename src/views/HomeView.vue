@@ -1,60 +1,52 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref } from 'vue'
 
 // import axios from 'axios'
 import MainSlider from '@/components/MainSlider.vue'
 import ProductCard from '@/components/ProductCard.vue'
-import { apiGetProducts, apiGetBanner } from '@/lib/apiInstance'
+import { useMainStore } from '@/stores'
+import { storeToRefs } from 'pinia'
 
-const banners = ref<Banner[]>([])
-const products = ref<ProducCard[]>([])
-const alerts = ref([])
+const alerts = ref<String[]>([])
 
 //types
-import type { ProducCard, Banner } from '@/types'
+import type { ProducCard } from '@/types'
+
+const mainStore = useMainStore()
+const { banners, products } = storeToRefs(mainStore)
 
 // 加入購物車
 const addCart = (product: ProducCard) => {
   console.log(`您已將 ${product.title} 商品加入購物車`)
-  alert(`您已將 ${product.title} 商品加入購物車`)
-  // alerts.value.push({
-  //   message: `您已將 ${product.title} 商品加入購物車`
-  // })
-  // setTimeout(() => {
-  //   alerts.value.shift()
-  // }, 3000)
+  alerts.value.push(`您已將 ${product.title} 商品加入購物車`)
+  setTimeout(() => {
+    alerts.value.shift()
+  }, 3000)
 }
-
-onMounted(() => {
-  apiGetProducts().then((res) => {
-    products.value = res.data
-  })
-  apiGetBanner().then((res) => {
-    banners.value = res.data
-  })
-})
 </script>
 
 <template>
-  <div class="alert-contain">
-    <TransitionGroup name="alert" tag="div">
-      <template v-for="item in alerts" :key="item">
-        <div class="message-item">{{ item.message }}</div>
-      </template>
+  <div>
+    <div class="alert-contain text-white">
+      <TransitionGroup name="alert" tag="div">
+        <template v-for="item in alerts" :key="item">
+          <div class="message-item">{{ item }}</div>
+        </template>
+      </TransitionGroup>
+    </div>
+
+    <section class="banner">
+      <MainSlider :data="banners" />
+    </section>
+    <TransitionGroup class="py-30" tag="section">
+      <h2 class="mb-30">Products</h2>
+      <div class="w-[min(85%,800px)] mx-auto">
+        <div class="grid grid-cols-3 gap-[20px]">
+          <ProductCard v-for="item in products" :key="item.id" :data="item" :add-cart="addCart" />
+        </div>
+      </div>
     </TransitionGroup>
   </div>
-
-  <section class="banner">
-    <MainSlider :data="banners" />
-  </section>
-  <TransitionGroup class="py-30" tag="section">
-    <h2 class="mb-30">Products</h2>
-    <div class="w-[min(85%,800px)] mx-auto">
-      <div class="grid grid-cols-3 gap-[20px]">
-        <ProductCard v-for="item in products" :key="item.id" :data="item" @click="addCart(item)" />
-      </div>
-    </div>
-  </TransitionGroup>
 </template>
 
 <style lang="scss" scoped>

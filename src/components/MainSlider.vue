@@ -5,6 +5,7 @@ import { Navigation } from 'swiper/modules'
 import 'swiper/css'
 
 const props = defineProps<{ data: Banner[] }>()
+
 const modules = [Navigation]
 </script>
 
@@ -20,9 +21,9 @@ const modules = [Navigation]
           <img :src="banner.imgUrl" alt="" />
         </div>
       </swiper-slide>
-      <div class="slider-nav prev"></div>
-      <div class="slider-nav next"></div>
     </swiper>
+    <div class="slider-nav prev"></div>
+    <div class="slider-nav next"></div>
   </div>
 </template>
 
