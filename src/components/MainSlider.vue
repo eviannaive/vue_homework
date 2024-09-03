@@ -3,7 +3,6 @@ import type { Banner } from '@/types'
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import { Navigation } from 'swiper/modules'
 import 'swiper/css'
-import 'swiper/css/navigation'
 
 const props = defineProps<{ data: Banner[] }>()
 const modules = [Navigation]
@@ -14,6 +13,7 @@ const modules = [Navigation]
     <swiper
       :modules="modules"
       :navigation="{ enabled: true, prevEl: '.slider-nav.prev', nextEl: '.slider-nav.next' }"
+      loop
     >
       <swiper-slide v-for="banner in data" :key="banner.id">
         <div class="img-box">

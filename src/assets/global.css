@@ -19,3 +19,13 @@ h3 {
   font-weight: bold;
   font-size: 1.17rem;
 }
+
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 1s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
+}

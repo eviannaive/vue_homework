@@ -44,24 +44,17 @@ onMounted(() => {
     </TransitionGroup>
   </div>
 
-  <main>
-    <section class="banner">
-      <MainSlider :data="banners" />
-    </section>
-    <section class="py-30">
-      <h2 class="mb-30">Products</h2>
-      <div class="w-[min(85%,800px)] mx-auto">
-        <div class="grid grid-cols-3 gap-[20px]">
-          <ProductCard
-            v-for="item in products"
-            :key="item.id"
-            :data="item"
-            @click="addCart(item)"
-          />
-        </div>
+  <section class="banner">
+    <MainSlider :data="banners" />
+  </section>
+  <TransitionGroup class="py-30" tag="section">
+    <h2 class="mb-30">Products</h2>
+    <div class="w-[min(85%,800px)] mx-auto">
+      <div class="grid grid-cols-3 gap-[20px]">
+        <ProductCard v-for="item in products" :key="item.id" :data="item" @click="addCart(item)" />
       </div>
-    </section>
-  </main>
+    </div>
+  </TransitionGroup>
 </template>
 
 <style lang="scss" scoped>

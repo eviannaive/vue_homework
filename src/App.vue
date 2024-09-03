@@ -17,7 +17,11 @@ import AppFooter from '@/components/AppFooter.vue'
     </div> -->
     <AppNavbar />
   </header>
-  <RouterView />
+  <main>
+    <Transition>
+      <RouterView />
+    </Transition>
+  </main>
   <AppFooter />
 </template>
 
