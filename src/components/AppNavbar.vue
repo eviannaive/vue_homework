@@ -1,16 +1,48 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { RouterLink } from 'vue-router'
+</script>
+<style lang="scss" scoped>
+nav {
+  /* display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 16px;
+  background-color: #79a6bd;
+  padding: 15px 30px; */
+  ul {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    > li {
+      font-size: 20px;
+    }
+  }
+  .menu-btn {
+    display: flex;
+    flex-direction: column;
+    width: 30px;
+    height: 16px;
+    gap: 5px;
+    span {
+      width: 100%;
+      height: 2px;
+      background-color: #fff;
+    }
+  }
+}
+</style>
 
 <template>
   <!-- Nav -->
-  <nav>
-    <a href="javascript:;">
+  <nav class="flex items-center justify-between rounded-2xl bg-blue py-15 px-30 text-white">
+    <a href="/">
       <h1>Vue3 幼幼班</h1>
     </a>
     <ul>
-      <li><a href="javascript:;">About</a></li>
-      <li><a href="javascript:;">News</a></li>
-      <li><a href="javascript:;">Product</a></li>
-      <li><a href="javascript:;">Contact</a></li>
+      <li><RouterLink to="/about">About</RouterLink></li>
+      <li><RouterLink to="/news">News</RouterLink></li>
+      <li><RouterLink to="/products">Product</RouterLink></li>
+      <li><RouterLink to="/contact">Contact</RouterLink></li>
     </ul>
     <!--       <div class="menu-btn">
         <span></span>
@@ -20,7 +52,7 @@
   </nav>
 </template>
 
-<style lang="scss" scoped>
+<!-- <style lang="scss" scoped>
 nav {
   display: flex;
   align-items: center;
@@ -49,4 +81,4 @@ nav {
     }
   }
 }
-</style>
+</style> -->

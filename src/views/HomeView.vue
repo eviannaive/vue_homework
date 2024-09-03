@@ -2,8 +2,6 @@
 import { ref, onMounted } from 'vue'
 
 import axios from 'axios'
-import AppNavbar from '@/components/AppNavbar.vue'
-import AppFooter from '@/components/AppFooter.vue'
 import MainSlider from '@/components/MainSlider.vue'
 import ProductCard from '@/components/ProductCard.vue'
 
@@ -47,7 +45,7 @@ onMounted(() => {
       </template>
     </TransitionGroup>
   </div>
-  <AppNavbar />
+
   <main>
     <section class="banner">
       <MainSlider :images="banners" />
@@ -61,7 +59,6 @@ onMounted(() => {
       </div>
     </section>
   </main>
-  <AppFooter />
 </template>
 
 <style lang="scss" scoped>

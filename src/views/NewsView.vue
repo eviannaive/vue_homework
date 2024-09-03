@@ -2,7 +2,7 @@
 
 <template>
   <div class="min-h-screen flex items-center">
-    <h1>This is an about page</h1>
+    <h1>This is a news page</h1>
   </div>
 </template>
 
