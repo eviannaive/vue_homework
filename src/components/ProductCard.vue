@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import type { ProducCard } from '@/types'
+import type { ProductCard as ProductCardType } from '@/types'
 
-const props = defineProps<{ data: ProducCard; addCart: (product: ProducCard) => void }>()
+const props = defineProps<{ data: ProductCardType; addCart: (product: ProductCardType) => void }>()
 </script>
 
 <template>

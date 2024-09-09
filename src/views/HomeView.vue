@@ -10,13 +10,13 @@ import { storeToRefs } from 'pinia'
 const alerts = ref<String[]>([])
 
 //types
-import type { ProducCard } from '@/types'
+import type { ProductCard as ProductCardType } from '@/types'
 
 const mainStore = useMainStore()
 const { banners, products } = storeToRefs(mainStore)
 
 // 加入購物車
-const addCart = (product: ProducCard) => {
+const addCart = (product: ProductCardType) => {
   console.log(`您已將 ${product.title} 商品加入購物車`)
   alerts.value.push(`您已將 ${product.title} 商品加入購物車`)
   setTimeout(() => {

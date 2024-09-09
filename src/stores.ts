@@ -1,10 +1,10 @@
 import { defineStore } from 'pinia'
 //types
-import type { ProducCard, Banner } from '@/types'
+import type { ProductCard, Banner } from '@/types'
 
 interface DataState {
   banners: Banner[]
-  products: ProducCard[]
+  products: ProductCard[]
 }
 
 export const useMainStore = defineStore({

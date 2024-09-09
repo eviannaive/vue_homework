@@ -1,4 +1,4 @@
-interface ProducCard {
+interface ProductCard {
   description: string
   id: number
   imgUrl: string
@@ -11,4 +11,4 @@ interface Banner {
   imgUrl: string
 }
 
-export type { ProducCard, Banner }
+export type { ProductCard, Banner }
